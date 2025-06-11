@@ -1,0 +1,31 @@
+@use "../../utils/mixins" as *;
+
+.navbar {
+  @include flex-center-between;
+  border-bottom: 1px blue solid;
+  height: 5vh;
+  padding: 0 0 5px 0;
+  &-logo,
+  &-library,
+  &-account {
+    display: flex;
+    height: 100%;
+  }
+  &-logo {
+    align-items: center;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    h2 {
+      margin: 0;
+    }
+  }
+  &-library,
+  &-account {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+  }
+}
