@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../assets/logo.png";
 import "./Navbar.css";
 
 let userIsAdmin: boolean = false;
-let userIsLoggedIn: boolean = true;
+let userIsLoggedIn: boolean = false;
 
 const Navbar = () => {
   const navigate = useNavigate();
