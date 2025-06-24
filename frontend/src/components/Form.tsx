@@ -1,49 +1,46 @@
-import { useState } from "react";
-import serviceSignUp from "../services/serviceSignup";
-import serviceLogIn from "../services/serviceLogin";
+import { useForm } from "react-hook-form";
+import formValidationRules from "../utils/formValidationRules.js";
+import serviceLogIn from "../services/serviceLogIn.js";
+import serviceSignUp from "../services/serviceSignUp.js";
 
 const Form = (props: { type: string }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const isSignUp = props.type === "signup";
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onBlur",
+  });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    isSignUp
-      ? serviceSignUp({ name, email, password })
-      : serviceLogIn({ email, password });
+  const onSubmit = (data) => {
+    props.type === "signup" ? serviceSignUp(data) : serviceLogIn(data);
   };
 
+  const listOfInputs =
+    props.type === "signup"
+      ? ["name", "email", "password"]
+      : ["email", "password"];
+
   return (
-    <form onSubmit={handleSubmit}>
-      {isSignUp && (
-        <>
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
-        </>
-      )}
-      <label htmlFor="email">Email</label>
-      <input
-        id="email"
-        type="email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
-      <button type="submit">Send</button>
-    </form>
+    <div className="form">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {listOfInputs.map((inputField) => (
+          <div key={inputField}>
+            <label htmlFor={inputField}>{inputField}</label>
+            <input
+              id={inputField}
+              type={inputField === "name" ? "text" : inputField}
+              placeholder={`Enter ${inputField}`}
+              {...register(inputField, formValidationRules(inputField))}
+            />
+            {errors[inputField] && (
+              <p>{errors[inputField]?.message?.toString()}</p>
+            )}
+          </div>
+        ))}
+        <button type="submit">Send</button>
+      </form>
+    </div>
   );
 };
 

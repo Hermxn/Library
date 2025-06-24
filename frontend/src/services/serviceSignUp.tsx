@@ -14,7 +14,6 @@ const serviceSignUp = async ({
       body: JSON.stringify({ name, email, password }),
     });
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Registration error:", error);
