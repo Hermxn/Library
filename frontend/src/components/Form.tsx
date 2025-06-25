@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext.js";
 import formValidationRules from "../utils/formValidationRules.js";
-import serviceLogIn from "../services/serviceLogIn.js";
-import serviceSignUp from "../services/serviceSignUp.js";
 
 const Form = (props: { type: string }) => {
   const {
@@ -12,8 +12,10 @@ const Form = (props: { type: string }) => {
     mode: "onBlur",
   });
 
-  const onSubmit = (data) => {
-    props.type === "signup" ? serviceSignUp(data) : serviceLogIn(data);
+  const auth = useContext(AuthContext);
+
+  const onSubmit = (data: any) => {
+    props.type === "signup" ? auth.signup(data) : auth.login(data);
   };
 
   const listOfInputs =

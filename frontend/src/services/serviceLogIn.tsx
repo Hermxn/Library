@@ -12,7 +12,6 @@ const serviceLogIn = async ({
       body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
-    // serviceLocalStorage(data);
     return data;
   } catch (error) {
     console.error("Registration error:", error);
