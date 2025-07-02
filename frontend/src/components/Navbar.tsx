@@ -1,39 +1,45 @@
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
+import { urlsAPP } from "../utils/_urls";
 import logo from "../assets/logo.png";
 import "./Navbar.css";
 
-let userIsAdmin: boolean = false;
-let userIsLoggedIn: boolean = false;
-
 const Navbar = () => {
   const navigate = useNavigate();
+  const auth = useContext(AuthContext);
 
   const libraryButtons: React.ReactNode[] = [];
-  if (userIsLoggedIn) {
+  if (auth.isLoggedIn) {
     libraryButtons.push(<button key="library">Library</button>);
-    if (!userIsAdmin)
+    if (!auth.isAdmin)
       libraryButtons.push(<button key="favorites">Favorites</button>);
-    if (userIsAdmin) {
+    if (auth.isAdmin) {
       libraryButtons.push(<button key="users">Users</button>);
       libraryButtons.push(<button key="reservations">Reservations</button>);
     }
   }
 
   const accountButtons: React.ReactNode[] = [];
-  if (!userIsLoggedIn) {
+  if (!auth.isLoggedIn) {
     accountButtons.push(
-      <button key="signup" onClick={() => navigate("/signup")}>
+      <button key="signup" onClick={() => navigate(urlsAPP.signup)}>
         Sign up
       </button>
     );
     accountButtons.push(
-      <button key="login" onClick={() => navigate("/login")}>
+      <button key="login" onClick={() => navigate(urlsAPP.login)}>
         Log in
       </button>
     );
-  } else if (!userIsAdmin) {
+  } else if (!auth.isAdmin) {
     accountButtons.push(<button key="account">Account</button>);
-  } else if (userIsAdmin) {
+    accountButtons.push(
+      <button key="Logout" onClick={() => auth.logout()}>
+        Logout
+      </button>
+    );
+  } else if (auth.isAdmin) {
     accountButtons.push(<button key="statistics">Statistics</button>);
   }
 
