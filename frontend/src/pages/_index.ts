@@ -1,2 +1,9 @@
-export { default as Home } from "./Home";
+export { default as Account } from "./Account";
 export { default as Auth } from "./Auth";
+export { default as Book } from "./Book";
+export { default as Favorites } from "./Favorites";
+export { default as Home } from "./Home";
+export { default as Library } from "./Library";
+export { default as Reservations } from "./Reservations";
+export { default as Statistics } from "./Statistics";
+export { default as Users } from "./Users";
