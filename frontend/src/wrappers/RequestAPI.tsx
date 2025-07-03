@@ -27,7 +27,7 @@ async function RequestAPI(
 
   try {
     const response = await instance.request(config);
-    return response.data;
+    return { response: response.data, status: response.status };
   } catch (error) {
     return { error };
   }

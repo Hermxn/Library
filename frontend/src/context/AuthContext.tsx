@@ -62,9 +62,9 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     redirect: string = urlsAPP.home
   ) => {
     try {
-      const result = await AuthService.login(data);
-      if (result.success || result.accessToken) {
-        handleAuth.success(result, redirect);
+      const { response, status } = await AuthService.login(data);
+      if (status === 200 && response.accessToken) {
+        handleAuth.success(response, redirect);
       }
     } catch (error) {
       handleAuth.unsuccess();
@@ -80,9 +80,9 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     redirect: string = urlsAPP.home
   ) => {
     try {
-      const result = await AuthService.signup(data);
-      if (result.success || result.accessToken) {
-        handleAuth.success(result, redirect);
+      const { response, status } = await AuthService.login(data);
+      if (status === 200 && response.accessToken) {
+        handleAuth.success(response, redirect);
       }
     } catch (error) {
       handleAuth.unsuccess();
