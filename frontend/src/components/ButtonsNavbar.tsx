@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import ButtonsNavBarHandler from "../handlers/ButtonsNavBarHandler";
 import ButttonsInterface from "../interfaces/ButtonsNavbarInterface";
 import { urlsAPP } from "../utils/_urls";
+import "../styles/ButtonsNavbar.css";
 
 const ButtonsNavbar = () => {
   const navigate = useNavigate();
@@ -70,17 +71,17 @@ const ButtonsNavbar = () => {
   ];
 
   const NavbarMainButtons = ButtonsNavBarHandler(navbarButtonsMainArray)
-    .filterLoggedIn(auth.isLoggedIn, auth.isAdmin)
+    // .filterLoggedIn(auth.isLoggedIn, auth.isAdmin)
     .createButtons();
 
   const NavbarAccountButtons = ButtonsNavBarHandler(navbarButtonsAccountArray)
-    .filterLoggedIn(auth.isLoggedIn, auth.isAdmin)
+    // .filterLoggedIn(auth.isLoggedIn, auth.isAdmin)
     .createButtons();
 
   return (
     <>
-      <div className="navbar-library">{NavbarMainButtons}</div>
-      <div className="navbar-account">{NavbarAccountButtons}</div>
+      <div className="button-navbar-library">{NavbarMainButtons}</div>
+      <div className="button-navbar-account">{NavbarAccountButtons}</div>
     </>
   );
 };
