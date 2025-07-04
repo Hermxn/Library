@@ -1,0 +1,9 @@
+.button {
+  &-navbar-library,
+  &-navbar-account {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    gap: 5px;
+  }
+}
