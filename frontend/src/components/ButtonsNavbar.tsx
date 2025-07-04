@@ -7,7 +7,7 @@ import "../styles/ButtonsNavbar.css";
 
 const ButtonsNavbar = () => {
   const navigate = useNavigate();
-  const auth = useAuth();
+  const { isAdmin, isLoggedIn, logout } = useAuth();
 
   const navbarButtonsMainArray: ButttonsInterface[] = [
     {
@@ -59,7 +59,7 @@ const ButtonsNavbar = () => {
       key: "Logout",
       isLoggedIn: true,
       isAdmin: false,
-      func: () => auth.logout(),
+      func: () => logout(),
     },
     {
       key: "Account",
@@ -70,11 +70,11 @@ const ButtonsNavbar = () => {
   ];
 
   const NavbarMainButtons = ButtonsNavBarHandler(navbarButtonsMainArray)
-    // .filterLoggedIn(auth.isLoggedIn, auth.isAdmin)
+    .filterLoggedIn(isLoggedIn, isAdmin)
     .createButtons();
 
   const NavbarAccountButtons = ButtonsNavBarHandler(navbarButtonsAccountArray)
-    // .filterLoggedIn(auth.isLoggedIn, auth.isAdmin)
+    .filterLoggedIn(isLoggedIn, isAdmin)
     .createButtons();
 
   return (

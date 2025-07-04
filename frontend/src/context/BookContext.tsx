@@ -16,9 +16,9 @@ const BookProvider = ({ children }: { children: ReactNode }) => {
 
   const getBooksAll = async () => {
     try {
-      const result = await BookService.getBooksAll();
-      if (result.success) {
-        setBooksAll(result);
+      const { response, status } = await BookService.getBooksAll();
+      if (status === 200 && response.length !== 0) {
+        setBooksAll(response);
       }
     } catch (error) {
       // handle error
@@ -27,8 +27,8 @@ const BookProvider = ({ children }: { children: ReactNode }) => {
 
   const getBooksOne = async (id: string) => {
     try {
-      const result = await BookService.getBooksOne(id);
-      if (result.success) return result;
+      const { response, status } = await BookService.getBooksOne(id);
+      if (status === 200 && response.length !== 0) return response;
     } catch (error) {
       // handle error
     }
