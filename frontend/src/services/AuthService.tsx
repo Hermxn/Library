@@ -1,12 +1,12 @@
-import FetchAPI from "../wrappers/FetchAPI";
+import RequestAPI from "../wrappers/RequestAPI";
 import { urlsAPI } from "../utils/_urls";
 
 const AuthService = {
   login: (data: { email: string; password: string }) => {
-    return FetchAPI(urlsAPI.login, "POST", data);
+    return RequestAPI(urlsAPI.login, "POST", data);
   },
   signup: (data: { name: string; email: string; password: string }) => {
-    return FetchAPI(urlsAPI.signup, "POST", data);
+    return RequestAPI(urlsAPI.signup, "POST", data);
   },
 };
 

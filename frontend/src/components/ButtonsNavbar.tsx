@@ -1,13 +1,12 @@
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import ButtonsNavBarHandler from "../handlers/ButtonsNavBarHandler";
 import ButttonsInterface from "../interfaces/ButtonsNavbarInterface";
 import { urlsAPP } from "../utils/_urls";
 
 const ButtonsNavbar = () => {
   const navigate = useNavigate();
-  const auth = useContext(AuthContext);
+  const auth = useAuth();
 
   const navbarButtonsMainArray: ButttonsInterface[] = [
     {
