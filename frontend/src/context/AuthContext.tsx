@@ -1,4 +1,10 @@
-import { createContext, useState, ReactNode, useEffect } from "react";
+import {
+  createContext,
+  useState,
+  ReactNode,
+  useEffect,
+  useContext,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import { urlsAPP } from "../utils/_urls";
 import AuthService from "../services/AuthService";
@@ -62,9 +68,9 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     redirect: string = urlsAPP.home
   ) => {
     try {
-      const result = await AuthService.login(data);
-      if (result.success || result.accessToken) {
-        handleAuth.success(result, redirect);
+      const { response, status } = await AuthService.login(data);
+      if (status === 200 && response.accessToken) {
+        handleAuth.success(response, redirect);
       }
     } catch (error) {
       handleAuth.unsuccess();
@@ -80,9 +86,9 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     redirect: string = urlsAPP.home
   ) => {
     try {
-      const result = await AuthService.signup(data);
-      if (result.success || result.accessToken) {
-        handleAuth.success(result, redirect);
+      const { response, status } = await AuthService.login(data);
+      if (status === 200 && response.accessToken) {
+        handleAuth.success(response, redirect);
       }
     } catch (error) {
       handleAuth.unsuccess();
@@ -102,4 +108,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export { AuthContext, AuthProvider };
+export default AuthProvider;
+
+export function useAuth() {
+  return useContext(AuthContext);
+}

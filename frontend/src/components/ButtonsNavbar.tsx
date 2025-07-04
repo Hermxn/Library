@@ -1,20 +1,44 @@
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import ButtonsNavBarHandler from "../handlers/ButtonsNavBarHandler";
 import ButttonsInterface from "../interfaces/ButtonsNavbarInterface";
 import { urlsAPP } from "../utils/_urls";
 
 const ButtonsNavbar = () => {
   const navigate = useNavigate();
-  const auth = useContext(AuthContext);
+  const auth = useAuth();
 
   const navbarButtonsMainArray: ButttonsInterface[] = [
-    { key: "Library", isLoggedIn: true, isAdmin: false, func: () => {} },
-    { key: "Favorites", isLoggedIn: true, isAdmin: false, func: () => {} },
-    { key: "Users", isLoggedIn: true, isAdmin: true, func: () => {} },
-    { key: "Reservations", isLoggedIn: true, isAdmin: true, func: () => {} },
-    { key: "Statistics", isLoggedIn: true, isAdmin: true, func: () => {} },
+    {
+      key: "Library",
+      isLoggedIn: true,
+      isAdmin: false,
+      func: () => navigate(urlsAPP.library),
+    },
+    {
+      key: "Favorites",
+      isLoggedIn: true,
+      isAdmin: false,
+      func: () => navigate(urlsAPP.favorites),
+    },
+    {
+      key: "Users",
+      isLoggedIn: true,
+      isAdmin: true,
+      func: () => navigate(urlsAPP.users),
+    },
+    {
+      key: "Reservations",
+      isLoggedIn: true,
+      isAdmin: true,
+      func: () => navigate(urlsAPP.reservations),
+    },
+    {
+      key: "Statistics",
+      isLoggedIn: true,
+      isAdmin: true,
+      func: () => navigate(urlsAPP.satistics),
+    },
   ];
 
   const navbarButtonsAccountArray: ButttonsInterface[] = [
@@ -36,7 +60,12 @@ const ButtonsNavbar = () => {
       isAdmin: false,
       func: () => auth.logout(),
     },
-    { key: "Account", isLoggedIn: true, isAdmin: false, func: () => {} },
+    {
+      key: "Account",
+      isLoggedIn: true,
+      isAdmin: false,
+      func: () => navigate(urlsAPP.account),
+    },
   ];
 
   const NavbarMainButtons = ButtonsNavBarHandler(navbarButtonsMainArray)

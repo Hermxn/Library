@@ -5,6 +5,16 @@ const urlsAPI = {
   getBooksOne: (id: string) => `http://localhost:3000/books/${id}`,
 };
 
-const urlsAPP = { home: "/", login: "/login/", signup: "/signup/" };
+const urlsAPP = {
+  home: "/",
+  login: "/login/",
+  signup: "/signup/",
+  account: "/account",
+  library: "/library",
+  favorites: "/favorites",
+  users: "/users",
+  reservations: "/reservations",
+  satistics: "/statistics",
+};
 
 export { urlsAPI, urlsAPP };
