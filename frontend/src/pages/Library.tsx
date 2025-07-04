@@ -1,5 +1,20 @@
+import { useEffect } from "react";
+import { useBook } from "../context/BookContext";
+
 const Library = () => {
-  return <h1>Library page</h1>;
+  const { booksAll, getBooksAll } = useBook();
+
+  useEffect(() => {
+    getBooksAll();
+  }, []);
+
+  return (
+    <div>
+      {booksAll.map((book, id) => (
+        <div key={id}>{JSON.stringify(book)}</div>
+      ))}
+    </div>
+  );
 };
 
 export default Library;

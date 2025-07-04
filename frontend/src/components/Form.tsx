@@ -11,10 +11,10 @@ const Form = (props: { type: string }) => {
     mode: "onBlur",
   });
 
-  const auth = useAuth();
+  const { signup, login } = useAuth();
 
   const onSubmit = (data: any) => {
-    props.type === "signup" ? auth.signup(data) : auth.login(data);
+    props.type === "signup" ? signup(data) : login(data);
   };
 
   const listOfInputs =

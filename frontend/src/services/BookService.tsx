@@ -1,12 +1,12 @@
-import FetchAPI from "../wrappers/FetchAPI";
+import RequestsAPI from "../wrappers/RequestAPI";
 import { urlsAPI } from "../utils/_urls";
 
 const BookService = {
   getBooksAll: () => {
-    return FetchAPI(urlsAPI.getBooksAll, "GET");
+    return RequestsAPI(urlsAPI.getBooksAll, "GET");
   },
   getBooksOne: (id: string) => {
-    return FetchAPI(urlsAPI.getBooksOne(id), "GET");
+    return RequestsAPI(urlsAPI.getBooksOne(id), "GET");
   },
 };
 
