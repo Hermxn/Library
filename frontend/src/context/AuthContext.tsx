@@ -1,4 +1,10 @@
-import { createContext, useState, ReactNode, useEffect } from "react";
+import {
+  createContext,
+  useState,
+  ReactNode,
+  useEffect,
+  useContext,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import { urlsAPP } from "../utils/_urls";
 import AuthService from "../services/AuthService";
@@ -102,4 +108,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export { AuthContext, AuthProvider };
+export default AuthProvider;
+
+export function useAuth() {
+  return useContext(AuthContext);
+}

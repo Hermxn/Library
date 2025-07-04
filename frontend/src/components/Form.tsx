@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext.js";
+import { useAuth } from "../context/AuthContext.js";
 import formValidationRules from "../utils/formValidationRules.js";
 
 const Form = (props: { type: string }) => {
@@ -12,7 +11,7 @@ const Form = (props: { type: string }) => {
     mode: "onBlur",
   });
 
-  const auth = useContext(AuthContext);
+  const auth = useAuth();
 
   const onSubmit = (data: any) => {
     props.type === "signup" ? auth.signup(data) : auth.login(data);
