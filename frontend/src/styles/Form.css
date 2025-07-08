@@ -1,0 +1,25 @@
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+.form form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 30%;
+}
+.form form div {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1em;
+  width: 100%;
+}
+.form form div label,
+.form form div input,
+.form form div p {
+  margin-bottom: 0.5em;
+}/*# sourceMappingURL=Form.css.map */

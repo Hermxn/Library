@@ -1,0 +1,21 @@
+@use "../utils/mixins" as *;
+
+.form {
+  @include flex(center, center, column);
+  height: 100%;
+  form {
+    @include flex(center, center, column);
+    width: 30%;
+    div {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 1em;
+      width: 100%;
+      label,
+      input,
+      p {
+        margin-bottom: 0.5em;
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
-@mixin flex-center-between() {
+@mixin flex($align: center, $justify: center, $direction: row) {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
 }
