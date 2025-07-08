@@ -25,20 +25,22 @@ const Form = (props: { type: string }) => {
 
   return (
     <main>
-      <section className="form">
-        <h2>Welcome!</h2>
+      <section className="section-form">
         <form onSubmit={handleSubmit(onSubmit)}>
+          <h2>Welcome!</h2>
           {listOfInputs.map((inputField) => (
-            <div key={inputField} className={inputField}>
+            <div key={inputField} className="form-field">
               <label htmlFor={inputField}>
                 {inputField.charAt(0).toUpperCase() + inputField.slice(1)}
               </label>
-              <input
-                id={inputField}
-                type={inputField === "name" ? "text" : inputField}
-                placeholder={`Enter ${inputField}`}
-                {...register(inputField, formValidationRules(inputField))}
-              />
+              <div className="input-wrapper">
+                <input
+                  id={inputField}
+                  type={inputField === "name" ? "text" : inputField}
+                  placeholder={`Enter ${inputField}`}
+                  {...register(inputField, formValidationRules(inputField))}
+                />
+              </div>
               {errors[inputField] && (
                 <p>{errors[inputField]?.message?.toString()}</p>
               )}

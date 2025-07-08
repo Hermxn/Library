@@ -1,6 +1,26 @@
-@mixin flex($align: center, $justify: center, $direction: row) {
+@use "../utils/variables" as variables;
+
+@mixin flex-center-center-column() {
   display: flex;
-  align-items: $align;
-  justify-content: $justify;
-  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@mixin flex-center-space-between-row() {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+@mixin button-transparent($bg: none, $color: #{variables.$button-black-color}) {
+  border: none;
+  background: none;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  background-color: $bg;
+  color: $color;
 }

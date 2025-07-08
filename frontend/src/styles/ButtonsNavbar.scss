@@ -1,20 +1,15 @@
-@use "../utils/variables" as *;
+@use "../utils/variables" as variables;
+@use "../utils/mixins" as mixins;
 
 .button {
   &-navbar-library,
   &-navbar-account {
-    display: flex;
+    @include mixins.flex-center-space-between-row;
+    gap: 0.5em;
     height: 100%;
-    justify-content: space-between;
-    gap: 5px;
     button {
+      @include mixins.button-transparent();
       position: relative;
-      overflow: hidden;
-      padding: 0.5em 1em;
-      border: none;
-      background: none;
-      text-align: center;
-      border-radius: 6px;
       cursor: pointer;
       &::before {
         content: "";
@@ -29,10 +24,10 @@
         z-index: 1;
       }
       &:hover {
-        color: $button-text-color;
+        color: variables.$button-white-color;
       }
       &:hover::before {
-        background-color: $button-bg-color;
+        background-color: variables.$button-bg-color;
         transform: scale(0.95);
       }
       &:active::before {

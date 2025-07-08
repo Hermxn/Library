@@ -1,11 +1,11 @@
-@use "../utils/mixins" as *;
-@use "../utils/variables" as *;
+@use "../utils/mixins" as mixins;
+@use "../utils/variables" as variables;
 
 .navbar {
-  @include flex(center, space-between, row);
-  border-bottom: $border-solid;
+  @include mixins.flex-center-space-between-row;
+  border-bottom: variables.$border-solid;
   height: 5vh;
-  padding: 1vh 0;
+  padding: 1vh 0.5em;
   &-logo {
     display: flex;
     height: 100%;
@@ -16,11 +16,11 @@
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
-      margin: 0 0.5em;
+      margin: 0 0.5em 0 0;
     }
     h2 {
       margin: 0;
-      color: $navbar-logo-color;
+      color: variables.$navbar-logo-color;
     }
   }
 }

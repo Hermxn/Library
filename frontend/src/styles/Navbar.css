@@ -3,9 +3,9 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  border-bottom: 1px #bdbdbd solid;
+  border-bottom: 1px solid #bdbdbd;
   height: 5vh;
-  padding: 1vh 0;
+  padding: 1vh 0.5em;
 }
 .navbar-logo {
   display: flex;
@@ -19,9 +19,9 @@
   max-height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
-  margin: 0 0.5em;
+  margin: 0 0.5em 0 0;
 }
 .navbar-logo h2 {
   margin: 0;
-  color: #1769ff;
+  color: #03a9f4;
 }/*# sourceMappingURL=Navbar.css.map */

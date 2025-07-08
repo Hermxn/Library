@@ -1,21 +1,63 @@
-@use "../utils/mixins" as *;
+@use "../utils/mixins" as mixins;
+@use "../utils/variables" as variables;
 
-.form {
-  @include flex(center, center, column);
+.section-form {
+  @include mixins.flex-center-center-column;
   height: 100%;
+  h2 {
+    color: variables.$form-heading-color;
+    margin: 0;
+  }
+  p {
+    color: variables.$input-error-color;
+    margin: 0;
+  }
   form {
-    @include flex(center, center, column);
+    @include mixins.flex-center-center-column;
     width: 30%;
-    div {
+    gap: 1em;
+    label {
+      color: variables.$label-text-color;
+    }
+    .form-field {
+      position: relative;
       display: flex;
       flex-direction: column;
-      padding-bottom: 1em;
+      gap: 0.5em;
       width: 100%;
-      label,
-      input,
-      p {
-        margin-bottom: 0.5em;
+      .input-wrapper {
+        position: relative;
+        width: 100%;
+        input {
+          border: none;
+          outline: none;
+          padding: 0;
+          color: variables.$input-tex-color;
+          &::placeholder {
+            color: variables.$input-placeholder-color;
+          }
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 0;
+          transition: width 0.5s ease, left 0.5s ease;
+          border-bottom: variables.$input-border;
+        }
+        &:focus-within::before {
+          width: 100%;
+          left: 0;
+        }
       }
+    }
+    button {
+      @include mixins.button-transparent(
+        variables.$button-bg-color,
+        variables.$button-white-color
+      );
+      width: 30%;
     }
   }
 }
