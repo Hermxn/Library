@@ -1,6 +1,42 @@
 .button-navbar-library, .button-navbar-account {
   display: flex;
-  height: 100%;
+  align-items: center;
   justify-content: space-between;
-  gap: 5px;
+  flex-direction: row;
+  gap: 0.5em;
+  height: 100%;
+}
+.button-navbar-library button, .button-navbar-account button {
+  border: none;
+  background: none;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  background-color: none;
+  color: #212121;
+  position: relative;
+  cursor: pointer;
+}
+.button-navbar-library button::before, .button-navbar-account button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transition: transform 0.4s linear;
+  border-radius: 6px;
+}
+.button-navbar-library button span, .button-navbar-account button span {
+  position: relative;
+  z-index: 1;
+}
+.button-navbar-library button:hover, .button-navbar-account button:hover {
+  color: #ffffff;
+}
+.button-navbar-library button:hover::before, .button-navbar-account button:hover::before {
+  background-color: #1976d2;
+  transform: scale(0.95);
+}
+.button-navbar-library button:active::before, .button-navbar-account button:active::before {
+  transform: scale(1.05);
 }/*# sourceMappingURL=ButtonsNavbar.css.map */

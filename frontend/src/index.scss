@@ -10,11 +10,12 @@ body,
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+
+  header {
+    flex: 0 0 auto;
+  }
+  main {
+    flex: 1 0 auto;
+    overflow-y: auto;
+  }
 }
-#root header {
-  flex: 0 0 auto;
-}
-#root main {
-  flex: 1 0 auto;
-  overflow-y: auto;
-}/*# sourceMappingURL=index.css.map */
