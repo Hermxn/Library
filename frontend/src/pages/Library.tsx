@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useBook } from "../context/BookContext";
+import Book from "../components/Book";
 
 const Library = () => {
   const { booksAll, getBooksAll } = useBook();
@@ -8,10 +9,12 @@ const Library = () => {
     getBooksAll();
   }, []);
 
+  console.log(booksAll);
+
   return (
-    <div>
-      {booksAll.map((book, id) => (
-        <div key={id}>{JSON.stringify(book)}</div>
+    <div className="section-book-library">
+      {booksAll.map((book) => (
+        <Book key={book.id} book={book} />
       ))}
     </div>
   );

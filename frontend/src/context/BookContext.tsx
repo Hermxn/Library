@@ -1,12 +1,13 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import BookService from "../services/BookService";
+import BookInterface from "../interfaces/BookInterface";
 
 const BookContext = createContext({
   booksAll: [],
   getBooksAll: () => {},
   getBooksOne: () => {},
 } as unknown as {
-  booksAll: string[];
+  booksAll: BookInterface[];
   getBooksAll: () => Promise<void>;
   getBooksOne: (id: string) => Promise<void>;
 });
