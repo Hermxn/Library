@@ -1,13 +1,11 @@
-@use "../../utils/mixins" as *;
+@use "../utils/mixins" as *;
 
 .navbar {
   @include flex-center-between;
   border-bottom: 1px blue solid;
   height: 5vh;
   padding: 0 0 5px 0;
-  &-logo,
-  &-library,
-  &-account {
+  &-logo {
     display: flex;
     height: 100%;
   }
@@ -21,11 +19,5 @@
     h2 {
       margin: 0;
     }
-  }
-  &-library,
-  &-account {
-    display: flex;
-    justify-content: space-between;
-    gap: 5px;
   }
 }
