@@ -13,7 +13,7 @@ const ButtonsNavBarHandler = (buttonsArray: ButtonsInterface[]) => {
     createButtons: () => {
       return filteredButtonsArray.map((button) => (
         <button key={button.key} onClick={button.func}>
-          {button.key}
+          <span>{button.key}</span>
         </button>
       ));
     },

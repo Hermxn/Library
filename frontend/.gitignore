@@ -23,6 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 *.css.map
-*.map
+*.scss.map
+
 
 db.json

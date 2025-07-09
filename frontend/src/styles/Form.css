@@ -1,0 +1,73 @@
+.section-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+.section-form h2 {
+  color: #212121;
+  margin: 0;
+}
+.section-form p {
+  color: #f44336;
+  margin: 0;
+}
+.section-form form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 30%;
+  gap: 1em;
+}
+.section-form form label {
+  color: #757575;
+}
+.section-form form .form-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  width: 100%;
+}
+.section-form form .form-field .input-wrapper {
+  position: relative;
+  width: 100%;
+}
+.section-form form .form-field .input-wrapper input {
+  border: none;
+  outline: none;
+  padding: 0;
+  color: #212121;
+}
+.section-form form .form-field .input-wrapper input::-moz-placeholder {
+  color: rgba(117, 117, 117, 0.5);
+}
+.section-form form .form-field .input-wrapper input::placeholder {
+  color: rgba(117, 117, 117, 0.5);
+}
+.section-form form .form-field .input-wrapper::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  transition: width 0.5s ease, left 0.5s ease;
+  border-bottom: 2px solid #03a9f4;
+}
+.section-form form .form-field .input-wrapper:focus-within::before {
+  width: 100%;
+  left: 0;
+}
+.section-form form button {
+  border: none;
+  background: none;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  background-color: #1976d2;
+  color: #ffffff;
+  width: 30%;
+}/*# sourceMappingURL=Form.css.map */

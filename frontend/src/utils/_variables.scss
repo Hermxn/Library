@@ -1,0 +1,18 @@
+@use "../utils/colors" as *;
+
+$border-solid: 1px solid $devider;
+
+$button-bg-color: $dark-primary-color;
+$button-white-color: $text-on-icons;
+$button-black-color: $primary-text;
+
+$navbar-logo-color: $accent-color;
+
+$input-border: 2px solid $accent-color;
+$input-error-color: $error;
+$input-tex-color: $primary-text;
+$input-placeholder-color: rgba(117, 117, 117, 0.5);
+
+$label-text-color: $secondary-text;
+
+$form-heading-color: $primary-text;
