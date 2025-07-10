@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import ButtonsNavBarHandler from "../handlers/ButtonsNavBarHandler";
-import ButttonsInterface from "../interfaces/ButtonsNavbarInterface";
+import ButttonsInterface from "../interfaces/InterfaceButtonsNavbar";
 import { urlsAPP } from "../utils/_urls";
 import "../styles/ButtonsNavbar.css";
 

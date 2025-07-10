@@ -1,13 +1,13 @@
 import RequestsAPI from "../wrappers/RequestAPI";
 import { urlsAPI } from "../utils/_urls";
-import { IFBook } from "../interfaces/InterfaceBook";
+import type { Interface } from "../interfaces/_index";
 
 const BookService = {
   getBooksAll: () => {
-    return RequestsAPI<IFBook[]>({ url: urlsAPI.getBooksAll });
+    return RequestsAPI<Interface.Book[]>({ url: urlsAPI.getBooksAll });
   },
   getBooksOne: (id: string) => {
-    return RequestsAPI<IFBook>({ url: urlsAPI.getBooksOne(id) });
+    return RequestsAPI<Interface.Book>({ url: urlsAPI.getBooksOne(id) });
   },
 };
 

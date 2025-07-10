@@ -29,8 +29,8 @@ const RequestAPI = async <T,>({
   } else config.data = data;
 
   try {
-    const response = await instance.request(config);
-    return response;
+    const { data, status } = await instance.request(config);
+    return { data, status };
   } catch (error) {
     return { error };
   }
