@@ -11,6 +11,7 @@ import {
   Users,
   Reservations,
   Statistics,
+  BookOne,
 } from "./pages/_index";
 import { urlsAPP } from "./utils/_urls";
 
@@ -30,6 +31,7 @@ const App = () => {
             <Route path={urlsAPP.users} element={<Users />} />
             <Route path={urlsAPP.reservations} element={<Reservations />} />
             <Route path={urlsAPP.satistics} element={<Statistics />} />
+            <Route path={urlsAPP.bookUrl} element={<BookOne />} />
           </Routes>
         </BookProvider>
       </AuthProvider>
