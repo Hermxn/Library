@@ -1,14 +1,17 @@
-import axios from "axios";
-import { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
+import {
+  IFRequestAPIParams,
+  IFRequestAPIResult,
+} from "../interfaces/InterfaceRequestAPI";
 
 const instance = axios.create();
 
-async function RequestAPI(
-  url: string,
-  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" = "GET",
-  data: Record<string, any> = {},
-  token: string | null = null
-) {
+const RequestAPI = async <T,>({
+  url,
+  method = "GET",
+  data = {},
+  token = null,
+}: IFRequestAPIParams): Promise<IFRequestAPIResult<T>> => {
   const config: AxiosRequestConfig = {
     url,
     method,
@@ -26,11 +29,11 @@ async function RequestAPI(
   } else config.data = data;
 
   try {
-    const response = await instance.request(config);
-    return { response: response.data, status: response.status };
+    const { data, status } = await instance.request(config);
+    return { data, status };
   } catch (error) {
     return { error };
   }
-}
+};
 
 export default RequestAPI;

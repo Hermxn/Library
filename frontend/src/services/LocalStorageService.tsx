@@ -7,11 +7,11 @@ const LocalStorageService = {
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("tokenExpirationDate", expirationDate);
   },
-  addUser: (data: { user: { email: string; name: string; id: string } }) => {
+  addUser: (data: { user: { email: string; name: string; id: number } }) => {
     const { email, name, id } = data.user;
     localStorage.setItem("userEmail", email);
     localStorage.setItem("userName", name);
-    localStorage.setItem("userId", id);
+    localStorage.setItem("userId", id.toString());
   },
   getToken: () => {
     const token = localStorage.getItem("accessToken");

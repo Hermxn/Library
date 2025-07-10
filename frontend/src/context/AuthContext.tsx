@@ -7,48 +7,34 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import { urlsAPP } from "../utils/_urls";
-import AuthService from "../services/AuthService";
-import LocalStorageService from "../services/LocalStorageService";
+import Service from "../services/_index";
+import type { Interface } from "../interfaces/_index";
 
-const AuthContext = createContext({
-  isLoggedIn: false,
-  isAdmin: false,
-  login: () => {},
-  signup: () => {},
-  logout: () => {},
-} as unknown as {
-  isLoggedIn: boolean;
-  isAdmin: boolean;
-  login: (data: { email: string; password: string }) => Promise<void>;
-  signup: (data: {
-    name: string;
-    email: string;
-    password: string;
-  }) => Promise<void>;
-  logout: () => void;
-});
+type Props = { children: ReactNode };
 
-const AuthProvider = ({ children }: { children: ReactNode }) => {
+const AuthContext = createContext<Interface.AuthContext | undefined>(undefined);
+
+const AuthProvider = ({ children }: Props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = LocalStorageService.getToken();
+    const token = Service.LocalStorage.getToken();
     if (token) {
       setIsLoggedIn(true);
     } else {
-      LocalStorageService.clearData();
+      Service.LocalStorage.clearData();
     }
   }, []);
 
-  const handleAuth = {
-    success: (result: any, redirect: string) => {
+  const handleAuth: Interface.AuthHandler = {
+    success: (result: Interface.AuthResult, redirect: string) => {
       setIsLoggedIn(true);
-      setIsAdmin(result.isAdmin || false);
-      LocalStorageService.addToken(result);
-      LocalStorageService.addUser(result);
+      setIsAdmin(result.user.isAdmin || false);
+      Service.LocalStorage.addToken(result);
+      Service.LocalStorage.addUser(result);
       navigate(redirect);
     },
     unsuccess: () => {
@@ -58,44 +44,46 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     logout: () => {
       setIsLoggedIn(false);
       setIsAdmin(false);
-      LocalStorageService.clearData();
+      Service.LocalStorage.clearData();
       navigate(urlsAPP.home);
     },
   };
 
-  const login = async (
-    data: { email: string; password: string },
+  const login: Interface.AuthContext["login"] = async (
+    user: Omit<Interface.AuthData, "name">,
     redirect: string = urlsAPP.home
   ) => {
-    try {
-      const { response, status } = await AuthService.login(data);
-      if (status === 200 && response.accessToken) {
-        handleAuth.success(response, redirect);
-      }
-    } catch (error) {
+    const response = await Service.Auth.login(user);
+    if ("error" in response) {
       handleAuth.unsuccess();
-    } // add error handling
+      console.error(response.error);
+      //handle error
+      return { error: response.error };
+    }
+    if ("data" in response && response.status === 200) {
+      const { data } = response;
+      handleAuth.success(data, redirect);
+    }
   };
 
-  const signup = async (
-    data: {
-      name: string;
-      email: string;
-      password: string;
-    },
+  const signup: Interface.AuthContext["signup"] = async (
+    data: Interface.AuthData,
     redirect: string = urlsAPP.home
   ) => {
-    try {
-      const { response, status } = await AuthService.login(data);
-      if (status === 200 && response.accessToken) {
-        handleAuth.success(response, redirect);
-      }
-    } catch (error) {
+    const response = await Service.Auth.signup(data);
+    if ("error" in response) {
       handleAuth.unsuccess();
-    } // add error handling
+      console.error(response.error);
+      //handle error
+      return { error: response.error };
+    }
+    if ("data" in response && response.status === 201) {
+      const { data } = response;
+      handleAuth.success(data, redirect);
+    }
   };
 
-  const logout = () => {
+  const logout: Interface.AuthContext["logout"] = () => {
     handleAuth.logout();
   };
 

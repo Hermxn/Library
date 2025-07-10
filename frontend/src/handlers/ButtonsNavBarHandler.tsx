@@ -1,4 +1,4 @@
-import ButtonsInterface from "../interfaces/ButtonsNavbarInterface";
+import ButtonsInterface from "../interfaces/InterfaceButtonsNavbar";
 
 const ButtonsNavBarHandler = (buttonsArray: ButtonsInterface[]) => {
   let filteredButtonsArray = buttonsArray;

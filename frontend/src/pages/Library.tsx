@@ -6,10 +6,8 @@ const Library = () => {
   const { booksAll, getBooksAll } = useBook();
 
   useEffect(() => {
-    getBooksAll();
-  }, []);
-
-  console.log(booksAll);
+    if (booksAll.length === 0) getBooksAll();
+  }, [booksAll]);
 
   return (
     <div className="section-book-library">

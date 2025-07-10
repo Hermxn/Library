@@ -15,6 +15,8 @@ const urlsAPP = {
   users: "/users",
   reservations: "/reservations",
   satistics: "/statistics",
+  book: (id: string) => `${urlsAPP.library}/book/${id}`,
+  bookUrl: "library/book/:id",
 };
 
 export { urlsAPI, urlsAPP };
