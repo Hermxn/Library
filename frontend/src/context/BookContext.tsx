@@ -1,38 +1,44 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import BookService from "../services/BookService";
-import BookInterface from "../interfaces/BookInterface";
+import { IFBook, IFBookContext } from "../interfaces/InterfaceBook";
 
-const BookContext = createContext({
-  booksAll: [],
-  getBooksAll: () => {},
-  getBooksOne: () => {},
-} as unknown as {
-  booksAll: BookInterface[];
-  getBooksAll: () => Promise<void>;
-  getBooksOne: (id: string) => Promise<void>;
-});
+type Props = { children: ReactNode };
 
-const BookProvider = ({ children }: { children: ReactNode }) => {
-  const [booksAll, setBooksAll] = useState([]);
+const BookContext = createContext<IFBookContext | undefined>(undefined);
 
-  const getBooksAll = async () => {
-    try {
-      const { response, status } = await BookService.getBooksAll();
-      if (status === 200 && response.length !== 0) {
-        setBooksAll(response);
-      }
-    } catch (error) {
-      // handle error
+const BookProvider = ({ children }: Props) => {
+  const [booksAll, setBooksAll] = useState<IFBook[]>([]);
+
+  const getBooksAll: IFBookContext["getBooksAll"] = async () => {
+    const response = await BookService.getBooksAll();
+    if ("error" in response) {
+      console.error(response.error);
+      //handle error
+      return { error: response.error };
+    }
+    if (
+      "data" in response &&
+      response.status === 200 &&
+      response.data.length !== 0
+    ) {
+      const { data } = response;
+      setBooksAll(data);
     }
   };
 
-  const getBooksOne = async (id: string) => {
-    try {
-      const { response, status } = await BookService.getBooksOne(id);
-      if (status === 200 && response.length !== 0) return response;
-    } catch (error) {
-      // handle error
+  const getBooksOne: IFBookContext["getBooksOne"] = async (id: string) => {
+    const response = await BookService.getBooksOne(id);
+    if ("error" in response) {
+      console.error(response.error);
+      // handle erro
+      return { error: response.error };
     }
+    if (
+      "data" in response &&
+      response.status === 200 &&
+      response.data !== undefined
+    )
+      return response.data;
   };
 
   return (

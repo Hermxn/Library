@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import BookInterface from "../interfaces/BookInterface";
+import { IFBook } from "../interfaces/InterfaceBook";
 import { urlsAPP } from "../utils/_urls";
 
 interface Props {
-  book: BookInterface;
+  book: IFBook;
 }
 
 const Book = ({ book }: Props) => {
