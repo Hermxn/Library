@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IFBook } from "../interfaces/InterfaceBook";
 import { urlsAPP } from "../utils/_urls";
 
@@ -8,8 +8,20 @@ interface Props {
 
 const Book = ({ book }: Props) => {
   const { image, bookName, author, id } = book;
+  const navigate = useNavigate();
+
+  const handleBookDetailsClick = (): void => {
+    navigate(urlsAPP.book(id));
+  };
+
+  const handleAddToFavoriteClick = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ): void => {
+    event.stopPropagation();
+  };
+
   return (
-    <div className="book-card">
+    <div className="book-card" onClick={handleBookDetailsClick}>
       <div className="book-header">
         <img src={image}></img>
       </div>
@@ -17,7 +29,7 @@ const Book = ({ book }: Props) => {
         <h3>{bookName}</h3>
         <p>{author}</p>
       </div>
-      <Link to={urlsAPP.book(id)}>Details</Link>
+      <button onClick={handleAddToFavoriteClick}>To favorites</button>
     </div>
   );
 };

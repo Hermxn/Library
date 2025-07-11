@@ -10,37 +10,25 @@ const BookProvider = ({ children }: Props) => {
   const [booksAll, setBooksAll] = useState<Interface.Book[]>([]);
 
   const getBooksAll: Interface.BookContext["getBooksAll"] = async () => {
-    const response = await Service.Book.getBooksAll();
-    if ("error" in response) {
-      console.error(response.error);
-      //handle error
-      return { error: response.error };
-    }
-    if (
-      "data" in response &&
-      response.status === 200 &&
-      response.data.length !== 0
-    ) {
-      const { data } = response;
-      setBooksAll(data);
+    try {
+      const books = await Service.Book.getBooksAll();
+      setBooksAll(books);
+    } catch (error) {
+      // handle error
+      console.error(error);
     }
   };
 
   const getBooksOne: Interface.BookContext["getBooksOne"] = async (
     id: string
   ) => {
-    const response = await Service.Book.getBooksOne(id);
-    if ("error" in response) {
-      console.error(response.error);
-      // handle erro
-      return { error: response.error };
+    try {
+      const book = await Service.Book.getBooksOne(id);
+      return book;
+    } catch (error) {
+      //handle error
+      console.error(error);
     }
-    if (
-      "data" in response &&
-      response.status === 200 &&
-      response.data !== undefined
-    )
-      return response.data;
   };
 
   return (
@@ -53,5 +41,9 @@ const BookProvider = ({ children }: Props) => {
 export default BookProvider;
 
 export function useBook() {
-  return useContext(BookContext);
+  const context = useContext(BookContext);
+  if (!context) {
+    throw new Error("Context must be within Provider");
+  }
+  return context;
 }

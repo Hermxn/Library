@@ -1,4 +1,4 @@
-import Book from "../components/Book";
+import Book from "../components/BookCard";
 import { useParams } from "react-router-dom";
 import { useBook } from "../context/BookContext";
 import { useEffect, useState } from "react";
