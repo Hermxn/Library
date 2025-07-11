@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext.js";
+import type { Interface } from "../interfaces/_index";
 import formValidationRules from "../utils/formValidationRules.js";
 import "../styles/Form.css";
 
@@ -8,17 +9,17 @@ const Form = (props: { type: string }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<Interface.AuthData>({
     mode: "onBlur",
   });
 
   const { signup, login } = useAuth();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: Interface.AuthData) => {
     props.type === "signup" ? signup(data) : login(data);
   };
 
-  const listOfInputs =
+  const listOfInputs: Array<keyof Interface.AuthData> =
     props.type === "signup"
       ? ["name", "email", "password"]
       : ["email", "password"];
