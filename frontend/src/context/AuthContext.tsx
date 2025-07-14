@@ -53,33 +53,27 @@ const AuthProvider = ({ children }: Props) => {
     user: Omit<Interface.AuthData, "name">,
     redirect: string = urlsAPP.home
   ) => {
-    const response = await Service.Auth.login(user);
-    if ("error" in response) {
-      handleAuth.unsuccess();
-      console.error(response.error);
-      //handle error
-      return { error: response.error };
-    }
-    if ("data" in response && response.status === 200) {
-      const { data } = response;
+    try {
+      const data = await Service.Auth.login(user);
       handleAuth.success(data, redirect);
+    } catch (error) {
+      //handle error
+      console.error(error);
+      handleAuth.unsuccess();
     }
   };
 
   const signup: Interface.AuthContext["signup"] = async (
-    data: Interface.AuthData,
+    user: Interface.AuthData,
     redirect: string = urlsAPP.home
   ) => {
-    const response = await Service.Auth.signup(data);
-    if ("error" in response) {
-      handleAuth.unsuccess();
-      console.error(response.error);
-      //handle error
-      return { error: response.error };
-    }
-    if ("data" in response && response.status === 201) {
-      const { data } = response;
+    try {
+      const data = await Service.Auth.signup(user);
       handleAuth.success(data, redirect);
+    } catch (error) {
+      //handle error
+      console.error(error);
+      handleAuth.unsuccess();
     }
   };
 
@@ -99,5 +93,9 @@ const AuthProvider = ({ children }: Props) => {
 export default AuthProvider;
 
 export function useAuth() {
-  return useContext(AuthContext);
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("Context must be within Provider");
+  }
+  return context;
 }

@@ -1,4 +1,4 @@
-import Book from "../components/Book";
+import BookCardDetailed from "../components/BookCardDetailed";
 import { useParams } from "react-router-dom";
 import { useBook } from "../context/BookContext";
 import { useEffect, useState } from "react";
@@ -21,9 +21,9 @@ const BookOne = () => {
   }, [id, book, getBooksOne]);
 
   return (
-    <div className="section-book-detailed">
-      {book ? <Book book={book} /> : <div>Loading...</div>}
-    </div>
+    <main>
+      {book ? <BookCardDetailed book={book} /> : <div>Loading...</div>}
+    </main>
   );
 };
 
