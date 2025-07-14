@@ -1,6 +1,7 @@
 import RequestsAPI from "../wrappers/RequestAPI";
 import { urlsAPI } from "../utils/_urls";
 import type { Interface } from "../interfaces/_index";
+import HandlerURL from "../handlers/HandlerURL";
 
 const BookService = {
   getBooksAll: async (): Promise<Interface.Book[]> => {
@@ -15,7 +16,10 @@ const BookService = {
       // handle error
       throw new Error("Error occured during loading the books");
     }
-    return response.data;
+    // replace img urls with urls in DB Supabase
+    const data = HandlerURL.replaceUrl(response.data);
+    //
+    return data as Promise<Interface.Book[]>;
   },
 
   getBooksOne: async (id: string): Promise<Interface.Book> => {
@@ -30,7 +34,10 @@ const BookService = {
       // handle error
       throw new Error("Error occured during loading the book");
     }
-    return response.data;
+    // replace img urls with urls in DB Supabase
+    const data = HandlerURL.replaceUrl(response.data);
+    //
+    return data as Promise<Interface.Book>;
   },
 };
 
