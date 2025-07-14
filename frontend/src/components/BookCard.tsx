@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { IFBook } from "../interfaces/InterfaceBook";
+import type { Interface } from "../interfaces/_index";
 import { urlsAPP } from "../utils/_urls";
 
 interface Props {
-  book: IFBook;
+  book: Interface.Book;
 }
 
-const Book = ({ book }: Props) => {
+const BookCard = ({ book }: Props) => {
   const { image, bookName, author, id } = book;
   const navigate = useNavigate();
 
@@ -21,6 +21,8 @@ const Book = ({ book }: Props) => {
   };
 
   return (
+    <main>
+
     <div className="book-card" onClick={handleBookDetailsClick}>
       <div className="book-header">
         <img src={image}></img>
@@ -31,7 +33,8 @@ const Book = ({ book }: Props) => {
       </div>
       <button onClick={handleAddToFavoriteClick}>To favorites</button>
     </div>
+    </main>
   );
 };
 
-export default Book;
+export default BookCard;

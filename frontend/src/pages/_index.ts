@@ -1,6 +1,6 @@
 export { default as Account } from "./Account";
 export { default as Auth } from "./Auth";
-export { default as BookOne } from "./Book";
+export { default as BookOne } from "./BookOne";
 export { default as Favorites } from "./Favorites";
 export { default as Home } from "./Home";
 export { default as Library } from "./Library";
