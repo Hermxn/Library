@@ -15,6 +15,6 @@ export interface IFBook {
 
 export interface IFBookContext {
   booksAll: IFBook[];
-  getBooksAll: () => Promise<void | { error: unknown }>;
-  getBooksOne: (id: string) => Promise<IFBook | { error: unknown } | undefined>;
+  getBooksAll: () => Promise<void>;
+  getBooksOne: (id: string) => Promise<IFBook | undefined>;
 }
