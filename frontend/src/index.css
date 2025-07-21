@@ -13,10 +13,8 @@ body,
 }
 #root header {
   flex: 0 0 auto;
-  margin: 0 1em;
 }
 #root main {
   flex: 1 0 auto;
   overflow-y: auto;
-  margin: 1em;
-} /*# sourceMappingURL=index.css.map */
+}

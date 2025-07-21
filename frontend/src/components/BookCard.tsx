@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import type { Interface } from "../interfaces/_index";
 import { urlsAPP } from "../utils/_urls";
+import "../styles/BookCard.css";
 
 interface Props {
   book: Interface.Book;
@@ -21,19 +22,20 @@ const BookCard = ({ book }: Props) => {
   };
 
   return (
-    <main>
-
-    <div className="book-card" onClick={handleBookDetailsClick}>
+    <div className={`book-card ${id}`} onClick={handleBookDetailsClick}>
       <div className="book-header">
-        <img src={image}></img>
+        <picture>
+          <source srcSet={`${image}.webp`} type="image/webp" />
+          <source srcSet={`${image}.jpg`} type="image/jpeg" />
+          <img src={`${image}.jpg`} alt="Book image" />
+        </picture>
       </div>
       <div className="book-footer">
-        <h3>{bookName}</h3>
+        <h4>{bookName}</h4>
         <p>{author}</p>
+        <button onClick={handleAddToFavoriteClick}>+</button>
       </div>
-      <button onClick={handleAddToFavoriteClick}>To favorites</button>
     </div>
-    </main>
   );
 };
 

@@ -1,0 +1,29 @@
+@use "../utils/breakpoints" as breakpoints;
+
+.section-book-library {
+  display: grid;
+  grid-auto-rows: minmax(100px, 41vh);
+  gap: 3rem;
+  padding: 0.5rem;
+  @include breakpoints.xs() {
+    grid-template-columns: 1fr;
+
+    background-color: red;
+  }
+  @include breakpoints.sm() {
+    grid-template-columns: repeat(2, 1fr);
+    background-color: green;
+  }
+  @include breakpoints.md() {
+    grid-template-columns: repeat(3, 1fr);
+    background-color: blue;
+  }
+  @include breakpoints.lg() {
+    grid-template-columns: repeat(4, 1fr);
+    background-color: yellow;
+  }
+  @include breakpoints.xl() {
+    grid-template-columns: repeat(6, 1fr);
+    background-color: orange;
+  }
+}
