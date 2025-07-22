@@ -20,19 +20,27 @@ const App = () => {
     <>
       <AuthProvider>
         <BookProvider>
-          <Navbar />
-          <Routes>
-            <Route path={urlsAPP.home} element={<Home />} />
-            <Route path={urlsAPP.login} element={<Auth formtype="login" />} />
-            <Route path={urlsAPP.signup} element={<Auth formtype="signup" />} />
-            <Route path={urlsAPP.account} element={<Account />} />
-            <Route path={urlsAPP.library} element={<Library />} />
-            <Route path={urlsAPP.favorites} element={<Favorites />} />
-            <Route path={urlsAPP.users} element={<Users />} />
-            <Route path={urlsAPP.reservations} element={<Reservations />} />
-            <Route path={urlsAPP.satistics} element={<Statistics />} />
-            <Route path={urlsAPP.bookUrl} element={<BookOne />} />
-          </Routes>
+          <header>
+            <Navbar />
+          </header>
+          <main>
+            <Routes>
+              <Route path={urlsAPP.home} element={<Home />} />
+              <Route path={urlsAPP.login} element={<Auth formtype="login" />} />
+              <Route
+                path={urlsAPP.signup}
+                element={<Auth formtype="signup" />}
+              />
+              <Route path={urlsAPP.account} element={<Account />} />
+              <Route path={urlsAPP.library} element={<Library />} />
+              <Route path={urlsAPP.favorites} element={<Favorites />} />
+              <Route path={urlsAPP.users} element={<Users />} />
+              <Route path={urlsAPP.reservations} element={<Reservations />} />
+              <Route path={urlsAPP.satistics} element={<Statistics />} />
+              <Route path={urlsAPP.bookUrl} element={<BookOne />} />
+            </Routes>
+          </main>
+          <footer></footer>
         </BookProvider>
       </AuthProvider>
     </>

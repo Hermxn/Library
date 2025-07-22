@@ -20,11 +20,7 @@ const BookOne = () => {
     }
   }, [id, book, getBooksOne]);
 
-  return (
-    <main>
-      {book ? <BookCardDetailed book={book} /> : <div>Loading...</div>}
-    </main>
-  );
+  return <>{book ? <BookCardDetailed book={book} /> : <div>Loading...</div>}</>;
 };
 
 export default BookOne;

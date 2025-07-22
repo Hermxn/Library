@@ -11,13 +11,11 @@ const Library = () => {
   }, [booksAll]);
 
   return (
-    <main>
-      <div className="section-book-library">
-        {booksAll.map((book) => (
-          <Book key={book.id} book={book} />
-        ))}
-      </div>
-    </main>
+    <section className="section-book-library">
+      {booksAll.map((book) => (
+        <Book key={book.id} book={book} />
+      ))}
+    </section>
   );
 };
 

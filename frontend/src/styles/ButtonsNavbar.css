@@ -12,7 +12,7 @@
   text-align: center;
   overflow: hidden;
   border-radius: 6px;
-  padding: 0.5em 1em;
+  padding: 0.25rem 0.75rem;
   background-color: none;
   color: #212121;
   position: relative;
@@ -27,6 +27,7 @@
   border-radius: 6px;
 }
 .button-navbar-library button span, .button-navbar-account button span {
+  text-align: center;
   position: relative;
   z-index: 1;
 }

@@ -25,32 +25,30 @@ const Form = (props: { type: string }) => {
       : ["email", "password"];
 
   return (
-    <main>
-      <section className="section-form">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <h2>Welcome!</h2>
-          {listOfInputs.map((inputField) => (
-            <div key={inputField} className="form-field">
-              <label htmlFor={inputField}>
-                {inputField.charAt(0).toUpperCase() + inputField.slice(1)}
-              </label>
-              <div className="input-wrapper">
-                <input
-                  id={inputField}
-                  type={inputField === "name" ? "text" : inputField}
-                  placeholder={`Enter ${inputField}`}
-                  {...register(inputField, formValidationRules(inputField))}
-                />
-              </div>
-              {errors[inputField] && (
-                <p>{errors[inputField]?.message?.toString()}</p>
-              )}
+    <section className="section-form">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <h2>Welcome!</h2>
+        {listOfInputs.map((inputField) => (
+          <div key={inputField} className="form-field">
+            <label htmlFor={inputField}>
+              {inputField.charAt(0).toUpperCase() + inputField.slice(1)}
+            </label>
+            <div className="input-wrapper">
+              <input
+                id={inputField}
+                type={inputField === "name" ? "text" : inputField}
+                placeholder={`Enter ${inputField}`}
+                {...register(inputField, formValidationRules(inputField))}
+              />
             </div>
-          ))}
-          <button type="submit">Send</button>
-        </form>
-      </section>
-    </main>
+            {errors[inputField] && (
+              <p>{errors[inputField]?.message?.toString()}</p>
+            )}
+          </div>
+        ))}
+        <button type="submit">Send</button>
+      </form>
+    </section>
   );
 };
 
