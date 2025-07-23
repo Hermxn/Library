@@ -1,4 +1,7 @@
-const SearchBar = (props: { search; setSearch }) => {
+const SearchBar = (props: {
+  search: string;
+  setSearch: (value: string) => void;
+}) => {
   return (
     <div className="searchBar">
       <input
