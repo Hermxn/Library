@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useBook } from "../context/BookContext";
 import Book from "../components/BookCard";
-import "../styles/Library.css";
+import "../styles/pages/Library.css";
 
 const Library = () => {
   const { booksAll, getBooksAll } = useBook();

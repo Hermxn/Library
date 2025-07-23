@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import type { Interface } from "../interfaces/_index";
 import { urlsAPP } from "../utils/_urls";
-import "../styles/BookCard.css";
+import { GoBookmark } from "react-icons/go";
+import "../styles/components/BookCard.css";
 
 interface Props {
   book: Interface.Book;
@@ -16,9 +17,10 @@ const BookCard = ({ book }: Props) => {
   };
 
   const handleAddToFavoriteClick = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<SVGElement>
   ): void => {
     event.stopPropagation();
+    console.log("F");
   };
 
   return (
@@ -33,7 +35,12 @@ const BookCard = ({ book }: Props) => {
       <div className="book-footer">
         <h4>{bookName}</h4>
         <p>{author}</p>
-        <button onClick={handleAddToFavoriteClick}>+</button>
+        <GoBookmark
+          className="book-footer-icon"
+          onClick={handleAddToFavoriteClick}
+        >
+          +
+        </GoBookmark>
       </div>
     </div>
   );

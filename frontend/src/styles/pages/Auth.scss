@@ -1,0 +1,9 @@
+@use "../../utils/breakpoints" as breakpoints;
+
+.section-form {
+  display: flex;
+  justify-content: center;
+  form {
+    width: clamp(350px, 80%, 650px);
+  }
+}
